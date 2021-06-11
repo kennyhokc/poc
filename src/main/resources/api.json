@@ -195,7 +195,9 @@
       ],
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "minLength": 12,
+          "maxLength": 20
         },
         "tag": {
           "type": "string"
