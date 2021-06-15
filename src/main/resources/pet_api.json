@@ -15,13 +15,13 @@
   "host": "petstore.swagger.io",
   "basePath": "/api",
   "schemes": [
-      "http"
+    "http"
   ],
   "consumes": [
-      "application/json"
+    "application/json"
   ],
   "produces": [
-      "application/json"
+    "application/json"
   ],
   "paths": {
     "/pets": {
@@ -29,10 +29,10 @@
         "description": "Returns all pets from the system that the user has access to",
         "operationId": "findPets",
         "produces": [
-            "application/json",
-            "application/xml",
-            "text/xml",
-            "text/html"
+          "application/json",
+          "application/xml",
+          "text/xml",
+          "text/html"
         ],
         "parameters": [
           {
@@ -77,7 +77,7 @@
         "description": "Creates a new pet in the store.  Duplicates are allowed",
         "operationId": "addPet",
         "produces": [
-            "application/json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -111,10 +111,10 @@
         "description": "Returns a user based on a single ID, if the user does not have access to the pet",
         "operationId": "findPetById",
         "produces": [
-            "application/json",
-            "application/xml",
-            "text/xml",
-            "text/html"
+          "application/json",
+          "application/xml",
+          "text/xml",
+          "text/html"
         ],
         "parameters": [
           {
@@ -177,7 +177,7 @@
         },
         {
           "required": [
-              "id"
+            "id"
           ],
           "properties": {
             "id": {
@@ -191,7 +191,7 @@
     "NewPet": {
       "type": "object",
       "required": [
-          "name"
+        "name"
       ],
       "properties": {
         "name": {
@@ -207,8 +207,8 @@
     "ErrorModel": {
       "type": "object",
       "required": [
-          "code",
-          "message"
+        "code",
+        "message"
       ],
       "properties": {
         "code": {

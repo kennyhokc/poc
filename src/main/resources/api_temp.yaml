@@ -4,16 +4,12 @@ info:
   description: This is the OpenAPI Schema for HSBC-Mandate POC.
   version: 0.0.1
 servers:
-  - url: localhost:8080
+  - url: http://localhost:8080
     description: LocalRun
-components:
-  securitySchemes:
-    BasicAuth:
-      type: http
-      scheme: basic
 paths:
   /users/{userId}:
     get:
+      operationId: getUsers
       summary: Returns a user by ID.
       parameters:
         - name: userId
@@ -30,18 +26,26 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    format: int64
-                    example: 4
-                  name:
-                    type: string
-                    example: Jessica Smith
+                $ref: '#/components/schemas/User'
         '400':
           description: The specified user ID is invalid (not a number).
         '404':
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 4
+        name:
+          type: string
+          example: Jessica Smith
