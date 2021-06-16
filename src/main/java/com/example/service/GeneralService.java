@@ -21,7 +21,7 @@ public class GeneralService {
     ObjectMapper objectMapper = new ObjectMapper();
 
     // create an instance of the JsonSchemaFactory using version flag
-    JsonSchemaFactory schemaFactory = JsonSchemaFactory.getInstance( SpecVersion.VersionFlag.V201909 );
+    JsonSchemaFactory schemaFactory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V201909);
 
     public void validateContext(String context, String schema) {
         try {
@@ -32,7 +32,7 @@ public class GeneralService {
             JsonSchema jsonSchema = schemaFactory.getSchema(schema);
 
             // create set of validation message and store result in it
-            Set<ValidationMessage> validationResult = jsonSchema.validate( json );
+            Set<ValidationMessage> validationResult = jsonSchema.validate(json);
 
             if (validationResult.isEmpty()) {
                 logger.info("Json is valid");

@@ -3,7 +3,11 @@
   "title": "Painting",
   "description": "Painting information",
   "additionalProperties": true,
-  "required": ["name",  "email", "age"],
+  "required": [
+    "name",
+    "email",
+    "age"
+  ],
   "properties": {
     "name": {
       "type": "string",

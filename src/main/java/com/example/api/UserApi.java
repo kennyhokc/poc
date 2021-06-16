@@ -1,6 +1,7 @@
 package com.example.api;
 
-import com.example.model.User;
+import com.example.poc.api.UsersApiDelegate;
+import com.example.poc.model.User;
 import com.example.service.GeneralService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,9 +17,12 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class UserApi implements UsersApiDelegate {
 
-    @Autowired
     GeneralService generalService;
 
+    @Autowired
+    public UserApi (final GeneralService generalService) {
+        this.generalService = generalService;
+    }
 
     private String SAMPLE_SCHEMA = null;
 
