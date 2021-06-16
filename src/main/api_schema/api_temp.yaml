@@ -33,6 +33,23 @@ paths:
           description: A user with the specified ID was not found.
         default:
           description: Unexpected error
+  /users:
+    post:
+      operationId: addUsers
+      summary: Add a user
+      requestBody:
+        description: User data to add
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: polymorphism object for user data
+      responses:
+        '204':
+          description: No Content if success
+        default:
+          description: Unexpected Error
 components:
   securitySchemes:
     BasicAuth:
@@ -49,3 +66,6 @@ components:
         name:
           type: string
           example: Jessica Smith
+        hkid:
+          type: string
+          example: A123456

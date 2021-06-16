@@ -143,6 +143,15 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.30</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -162,7 +171,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/api_temp.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/api_schema/api_temp.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<apiPackage>com.example.api</apiPackage>
 							<modelPackage>com.example.model</modelPackage>

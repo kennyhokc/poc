@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "title": "Painting",
+  "description": "Painting information",
+  "additionalProperties": true,
+  "required": ["name",  "email", "age"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Painting name"
+    },
+    "email": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer",
+      "maximum": 100
+    }
+  }
+}
