@@ -26,13 +26,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserResponse'
         '400':
           description: The specified user ID is invalid (not a number).
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericException'
+                $ref: '#/components/schemas/GenericError'
         '404':
           description: A user with the specified ID was not found.
         default:
@@ -73,8 +73,16 @@ components:
         hkid:
           type: string
           example: A123456
-    GenericException:
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/GenericApiResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/User'
+    GenericError:
       description: Error message response
+      $ref: '#/components/schemas/GenericApiResponse'
+    GenericApiResponse:
       type: object
       properties:
         code:
@@ -82,3 +90,9 @@ components:
           format: int64
         message:
           type: string
+        developerMessage:
+          type: string
+      required:
+        - code
+        - message
+        - developerMessage

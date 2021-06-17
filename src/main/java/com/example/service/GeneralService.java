@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.exception.SchemaException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.schema.JsonSchema;
@@ -37,8 +38,7 @@ public class GeneralService {
             if (validationResult.isEmpty()) {
                 logger.info("Json is valid");
             } else {
-                validationResult
-                        .forEach(validationMessage -> logger.info(validationMessage.getMessage()));
+                throw new SchemaException("Json is invalid", validationResult);
             }
         } catch (IOException e) {
             e.printStackTrace();

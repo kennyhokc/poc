@@ -14,8 +14,9 @@
     <name>poc</name>
     <description>Demo project</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <org.projectlombok.version>1.16.22</org.projectlombok.version>
+        <start-class>com/example/PocApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -179,7 +180,6 @@
                             <inputSpec>${project.basedir}/src/main/api_schema/api_temp.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <library>spring-boot</library>
-<!--                            <output>${project.basedir}</output>-->
                             <configOptions>
                                 <serializableModel>true</serializableModel>
                                 <artifactId>${project.artifactId}</artifactId>

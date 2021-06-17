@@ -1,7 +1,9 @@
 package com.example.api;
 
 import com.example.poc.api.UsersApiDelegate;
+import com.example.poc.model.GenericApiResponse;
 import com.example.poc.model.User;
+import com.example.poc.model.UserResponse;
 import com.example.service.GeneralService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,20 +36,16 @@ public class UserApi implements UsersApiDelegate {
         }
     }
 
-
     @Override
-    public ResponseEntity<User> getUsers(Long userId) {
-        var user = new User();
-        user.setId(1L);
-        user.setName("Kenny Ho");
-        return ResponseEntity.ok(user);
+    public ResponseEntity<UserResponse> getUsers(Long userId) {
+        return null;
     }
 
     @Override
     public ResponseEntity<Void> addUsers(Object body) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            var jsonString = objectMapper.writeValueAsString(body);
+            String jsonString = objectMapper.writeValueAsString(body);
             generalService.validateContext(jsonString, SAMPLE_SCHEMA);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
