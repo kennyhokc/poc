@@ -37,4 +37,23 @@ public class ExceptionHandler {
                 .body(errorMessage);
     }
 
+    @org.springframework.web.bind.annotation.ExceptionHandler({Exception.class})
+    @ResponseBody
+    public ResponseEntity<GenericApiResponse> handleUnexpectedException(Exception exception) {
+        log.error("[handleUnexpectedException]: {}" , exception.getLocalizedMessage());
+        GenericApiResponse response = new GenericApiResponse();
+        if (exception instanceof NullPointerException) {
+            response.setCode((long)HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity
+                    .badRequest()
+                    .body(response);
+        }
+        response.setCode((long)HttpStatus.INTERNAL_SERVER_ERROR.value());
+        response.setMessage("unexpected error");
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .build();
+    }
+
 }
