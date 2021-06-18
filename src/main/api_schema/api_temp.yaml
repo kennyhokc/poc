@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: POC API
-  description: This is the OpenAPI Schema for HSBC-Mandate POC.
+  description: This is the OpenAPI Schema for POC.
   version: 0.0.1
 servers:
   - url: http://localhost:8080
