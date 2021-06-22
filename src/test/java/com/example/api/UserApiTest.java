@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = PocApplication.class)
 @SpringBootTest
-class UserApiTest {
+public class UserApiTest {
     private MockMvc mockMvc;
     private ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
@@ -65,9 +65,12 @@ class UserApiTest {
                 .age(-1)
                 .email("abc@gmail.com");
 
-        mockMvc.perform(post("/users").content(objectWriter.writeValueAsString(user)))
+        mockMvc.perform(post("/users")
+                .content(objectWriter.writeValueAsString(user))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is(HttpStatus.NO_CONTENT.value()))
                 .andDo(MockMvcResultHandlers.print());
+
 
     }
 }
