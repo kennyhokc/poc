@@ -52,6 +52,12 @@ paths:
       responses:
         '204':
           description: No Content if success
+        '400':
+          description: Invalid Action Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
         default:
           description: Unexpected Error
 components:

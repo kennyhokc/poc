@@ -41,15 +41,11 @@ public class UserApi implements UsersApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Void> addUsers(Object body) {
+    public ResponseEntity<Void> addUsers(Object body) throws Exception{
         ObjectMapper objectMapper = new ObjectMapper();
-        try {
             String jsonString = objectMapper.writeValueAsString(body);
             validateService.validateContext(jsonString, schema);
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
         return ResponseEntity.noContent().build();
     }
 }

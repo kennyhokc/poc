@@ -53,8 +53,7 @@ public class UserApiTest {
     public void testGetUsers() throws Exception {
         mockMvc.perform(get("/users/{id}", 0)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(HttpStatus.OK.value()))
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(status().is(HttpStatus.OK.value()));
 
     }
 
@@ -62,15 +61,27 @@ public class UserApiTest {
     public void testAddUser() throws Exception {
         User user = new User()
                 .name("Kenny")
-                .age(-1)
+                .age(0)
                 .email("abc@gmail.com");
 
         mockMvc.perform(post("/users")
                 .content(objectWriter.writeValueAsString(user))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is(HttpStatus.NO_CONTENT.value()))
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
 
 
+    }
+
+    @Test
+    public void testAddUser_invalidJson() throws Exception {
+        User user = new User()
+                .name("")
+                .age(-1)
+                .email("");
+
+        mockMvc.perform(post("/users")
+                .content(objectWriter.writeValueAsString(user))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 }
