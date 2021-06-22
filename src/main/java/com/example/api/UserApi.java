@@ -1,10 +1,8 @@
 package com.example.api;
 
 import com.example.poc.api.UsersApiDelegate;
-import com.example.poc.model.GenericApiResponse;
-import com.example.poc.model.User;
 import com.example.poc.model.UserResponse;
-import com.example.service.GeneralService;
+import com.example.service.ValidateService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
@@ -19,18 +17,19 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class UserApi implements UsersApiDelegate {
 
-    GeneralService generalService;
+    ValidateService validateService;
 
     @Autowired
-    public UserApi (final GeneralService generalService) {
-        this.generalService = generalService;
+    public UserApi (final ValidateService validateService) {
+        this.validateService = validateService;
     }
 
-    private String SAMPLE_SCHEMA = null;
+    private String schema;
 
-    {
+     {
+        schema = null;
         try {
-            SAMPLE_SCHEMA = FileUtils.readFileToString(new File("src/main/sample/example.json"), StandardCharsets.UTF_8);
+            schema = FileUtils.readFileToString(new File("src/main/sample/example.json"), StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,7 +45,8 @@ public class UserApi implements UsersApiDelegate {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String jsonString = objectMapper.writeValueAsString(body);
-            generalService.validateContext(jsonString, SAMPLE_SCHEMA);
+            validateService.validateContext(jsonString, schema);
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

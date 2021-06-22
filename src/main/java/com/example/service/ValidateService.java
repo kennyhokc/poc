@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Set;
 
 @Component
-public class GeneralService {
+public class ValidateService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // create instance of the ObjectMapper class

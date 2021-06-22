@@ -63,16 +63,18 @@ components:
     User:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 4
         name:
           type: string
           example: Jessica Smith
-        hkid:
+        age:
+          type: integer
+          format: int32
+          example: 4
+          minimum: 0
+        email:
           type: string
-          example: A123456
+          format: email
+          example: 123@gmail.com
     UserResponse:
       allOf:
         - $ref: '#/components/schemas/GenericApiResponse'
