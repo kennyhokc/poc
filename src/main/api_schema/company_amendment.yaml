@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: POC API
+  description: This is the OpenAPI Schema for POC.
+servers:
+  - url: http://petstore.swagger.io/v1
+    description: LocalRun
+paths:
+  /save:
+    post:
+      summary: "Company Amendment"
+      parameters:
+        - in: header
+          name: X-HSBC-Request-Correlation-Id
+          schema:
+           type: string
+           format: uuid
+          required: true
+        - in: header
+          name: X-HSBC-Channel-Id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: Save Form Object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BaseForm"
+      responses:
+        '200':
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: SUCCESS
+                  formRefId:
+                    type: string
+                    example: R000000001
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+components:
+  headers:
+    X-HSBC-Request-Correlation-Id:
+      name: X-HSBC-Request-Correlation-Id
+      description: UUID for each request
+      schema:
+        type: string
+        format: uuid
+      required: true
+      example: d415380f-60ee-48d1-94d4-36fdf704e58f
+    X-HSBC-Channel-Id:
+      description: The bank serving channels
+      schema:
+        type: string
+      required: true
+      example: WEB / MOBILE
+  schemas:
+    BaseForm:
+      type: object
+      required:
+        - channelCode
+        - formData
+      properties:
+        channelCode:
+          type: string
+          example: DBBHK
+        customerId:
+          type: string
+          example: HKHBAP178292827001
+        channelUserId:
+          type: string
+          example: B123456
+        journeyId:
+          type: string
+          example: DBBHK_MandateV1
+        region:
+          type: string
+          example: HK
+        externalRef:
+          type: string
+          example: REF111222333
+        formData:
+          $ref: "#/components/schemas/CompanyAmendment"
+    CompanyAmendment:
+      type: object
+      required:
+        - firstName
+      properties:
+        surName:
+          type: string
+          example: Chan
+          minimum: 1
+        firstName:
+          type: string
+          example: Tai
+        sex:
+          type: string
+          enum: ["F", "M", "U", ""]
+    GenericApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+        developerMessage:
+          type: string
+      required:
+        - code
+        - message
+        - developerMessage
